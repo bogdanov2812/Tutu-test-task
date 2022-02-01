@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/usersListFragment">
+
+    <fragment
+        android:id="@+id/usersListFragment"
+        android:name="com.bogdanov.tutu.presentation.user_list.UsersListFragment"
+        android:label="users_list_fragment"
+        tools:layout="@layout/users_list_fragment" >
+        <action
+            android:id="@+id/action_usersListFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.bogdanov.tutu.presentation.user_detail.UserDetailFragment"
+        android:label="user_detail_fragment"
+        tools:layout="@layout/user_detail_fragment">
+        <argument
+            android:name="username"
+            android:defaultValue="a"
+            app:argType="string" />
+    </fragment>
+</navigation>

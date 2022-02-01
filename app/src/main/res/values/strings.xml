@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">tutu</string>
+    <string name="search">Search…</string>
+    <string name="id">ID</string>
+    <string name="company">Company:</string>
+    <string name="username">Username:</string>
+    <string name="email">Email:</string>
+    <string name="name">Name:</string>
+    <string name="location">Location:</string>
+    <string name="followers">Followers:</string>
+    <string name="following">Following:</string>
+</resources>
