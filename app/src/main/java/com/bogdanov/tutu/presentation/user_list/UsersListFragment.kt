@@ -36,6 +36,7 @@ class UsersListFragment : Fragment(R.layout.users_list_fragment), UserPagingAdap
 
         binding.list.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.list.adapter = adapter
+        binding.list.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
 
         observeUsers(adapter)
 
