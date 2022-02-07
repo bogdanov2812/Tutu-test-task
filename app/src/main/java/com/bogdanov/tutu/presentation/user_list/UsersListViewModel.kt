@@ -24,10 +24,10 @@ class UsersListViewModel(
         usersFlow = query.asFlow()
             .flatMapLatest {
                 repository.searchUsers(it)
+
             }
             .cachedIn(viewModelScope)
 
-        println(usersFlow)
     }
 
 

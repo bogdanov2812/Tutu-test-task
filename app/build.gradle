@@ -60,6 +60,9 @@ dependencies {
     //ViewBinding
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.7'
 
+    //Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
 
     //Navigation
     def nav_version = "2.4.0"
@@ -84,6 +87,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
 
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.2"
+
     //paging3
     implementation "androidx.paging:paging-runtime-ktx:3.1.0"
 
@@ -92,9 +97,10 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
 
     //RoomDao
-    def room_version = "2.3.0"
+    def room_version = "2.4.1"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-paging:2.4.1"
 
 }

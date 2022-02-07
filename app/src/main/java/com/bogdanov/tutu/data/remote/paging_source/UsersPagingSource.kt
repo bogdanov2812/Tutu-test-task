@@ -13,7 +13,10 @@ class UsersPagingSource(
     override fun getRefreshKey(state: PagingState<Int, User>): Int? {
         val anchorPosition = state.anchorPosition ?: return null
 
+        println("anchorPosition = $anchorPosition")
         val page = state.closestPageToPosition(anchorPosition) ?: return null
+
+        println("page = $page")
 
         return page.prevKey?.plus(1) ?: page.nextKey?.minus(1)
 
@@ -32,9 +35,11 @@ class UsersPagingSource(
 
             if (response.isSuccessful && response.body() != null){
                 val users = response.body()!!.items.map { it.toDomainModel() }
+                println("users = ${users.size}")
+                println("pageIndex = $pageIndex")
                 val nextPageNumber = if (users.size == pageSize) pageIndex + (params.loadSize / 7) else null
                 val prevPageNumber = if (pageIndex == 1) null else pageIndex - 1
-
+                println("prevPageNumber = $prevPageNumber and nextPageNumber = $nextPageNumber")
                 LoadResult.Page(users, prevPageNumber, nextPageNumber)
             }else{
                 LoadResult.Error(HttpException(response))

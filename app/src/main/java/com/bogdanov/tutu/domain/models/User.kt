@@ -10,5 +10,6 @@ data class User(
     val email: String?,
     val followers: Int?,
     val following: Int?,
-    val publicRepos: Int?
+    val publicRepos: Int?,
+    val isCashed: Boolean
 )

@@ -1,11 +1,14 @@
 package com.bogdanov.tutu.presentation.user_detail
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bogdanov.tutu.domain.models.User
 import com.bogdanov.tutu.domain.repository.UsersRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -18,8 +21,9 @@ class UserDetailViewModel(
 
     fun getUserInfo(username: String){
         viewModelScope.launch {
-            repository.getUserInfo(username).collectLatest {
-                _userInfo.emit(it)
+            repository.getUserInfo(username).collect {
+                println("getUserInfo = $it")
+                _userInfo.value=it
             }
         }
 

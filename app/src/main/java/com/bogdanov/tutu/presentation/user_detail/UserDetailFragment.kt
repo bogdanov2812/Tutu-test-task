@@ -10,7 +10,9 @@ import com.bogdanov.tutu.R
 import com.bogdanov.tutu.databinding.UserDetailFragmentBinding
 import com.bogdanov.tutu.domain.models.User
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class UserDetailFragment : Fragment(R.layout.user_detail_fragment) {
@@ -23,22 +25,30 @@ class UserDetailFragment : Fragment(R.layout.user_detail_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        println("onViewCreated")
         initialObserv()
 
         getUserInfo(args.username)
+
+
+
+
 
     }
 
     private fun initialObserv() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.userInfo.collectLatest {
+            viewModel.userInfo.collect {
                 setUserInfo(it)
             }
         }
     }
 
     private fun getUserInfo(username: String){
-        viewModel.getUserInfo(username)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getUserInfo(username)
+        }
+
     }
 
     private fun setUserInfo(user: User?){
@@ -50,6 +60,13 @@ class UserDetailFragment : Fragment(R.layout.user_detail_fragment) {
             location.text = user?.location
             followers.text = user?.followers.toString()
             following.text = user?.following.toString()
+            if (user?.isCashed == true)
+            {
+                isCashed.text = "✅"
+            }else {
+                isCashed.text = "✖"
+            }
+
         }
 
         view?.let {

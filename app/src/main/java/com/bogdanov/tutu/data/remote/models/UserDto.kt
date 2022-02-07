@@ -1,5 +1,6 @@
 package com.bogdanov.tutu.data.remote.models
 
+import com.bogdanov.tutu.data.local.models.UserEntity
 import com.bogdanov.tutu.domain.models.User
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -20,5 +21,7 @@ data class UserDto(
     @Json(name="public_repos")
     val publicRepos: Int?,
 ){
-    fun toDomainModel() = User(id, username, avatar, name, company, location, email, followers, following, publicRepos)
+    fun toDomainModel() = User(id, username, avatar, name, company, location, email, followers, following, publicRepos, false)
+
+    fun toEntity() = UserEntity(id, username, avatar, name, company, location, email, followers, following, publicRepos)
 }
